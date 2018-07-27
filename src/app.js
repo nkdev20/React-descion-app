@@ -1,86 +1,83 @@
-console.log('File is running');
+class Indecesion extends React.Component{
+    render(){
 
-//JSX Javascript for XML
-const app = {
-    'title' : 'React',
-    'subtitle' : 'Learn it usdemy',
-    'options': []
-}
-const appRoot = document.getElementById('app');
+        const title = 'indescion';
+        const subtitle = 'Put your life in hands of computer';
+        const options = ['Thing one', 'Thing Two', 'Thing Three'];
 
-const numbers = [55, 100, 101];
-const onFormSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target.elements);
-    const option = e.target.elements.option.value;
-
-    if(option) {
-        app.options.push(option);
-        e.target.elements.option.value = '';
-        display();
+        return (
+            <div>
+                <Header title={title} subtitle={subtitle}/>
+                <Action />
+                <Options options = {options}/>
+                <AddOption />  
+            </div>
+        )
     }
-};
-
-const onClickRemove = () => {
-    app.options=[];
-    display();
 }
 
-const onClickMakeDescion = () => {
-    const randomNum = Math.floor(Math.random() * app.options.length);
-    const option = app.options[randomNum];
-    alert(option);
-    console.log(randomNum);
+class Header extends React.Component {
+    render(){
+        return (
+            <div>
+                <h1>{this.props.title}</h1>
+                <h2>{this.props.subtitle}</h2>
+            </div>
+        )
+    }
 }
 
-const display = () => {
-    const template = (
-        <div>
-            <h1>{app.title}</h1>
-            {app.subtitle && <p>{app.subtitle}</p>}
-            <p>{app.options.length > 0 ? 'OPtions Exist' : 'Options not present' }</p>
-            <p>{app.options.length}</p>
-            <button onClick = {onClickRemove}>Remove</button>
-            <button disabled = {app.options.length === 0} onClick = {onClickMakeDescion}>Make a Descion?</button>
-            {
-                numbers.map((number) => {
-                    return <p key={number}>Number : {number}</p>;
-                })
-            }
-            <ol>
+class Action extends React.Component {
+    handlePick(){
+        alert("hello that pick");
+    }
+    render(){
+        return (
+            <div>
+                <button onClick={this.handlePick}>What should i do?</button>
+            </div>
+        );
+    }
+}
+
+class Options extends React.Component {
+    handleRemoveAll()
+    {
+        alert("Remove All");
+    }
+    render(){
+        return(
+            <div>
+            <button onClick={this.handleRemoveAll}>do Something</button>
                 {
-                    app.options.map((option) => {
-                        return <li key={option}>{option}</li>
-                    })
+                    this.props.options.map((option) => <Option key={option} optionText={option} />)
                 }
-            </ol>
-            <form onSubmit={onFormSubmit}>
-                <input type="text" name ="option"/>
-                <button>Add Option</button>
-                
-            </form>
-        </div>
-    ); 
-    ReactDOM.render(template, appRoot);
+            </div>
+        )
+    }
 }
 
-display();
-function getLocation(location) {
-    if (location) {
-        return <p>Location:{location}</p>;        
-    } 
+class Option extends React.Component {
+    render(){
+        return(
+            <div>
+              {this.props.optionText }
+            </div>
+        )
+    }
 }
 
-const user = {
-    'name' : 'Nikhil',
-    'age' :'15',
-    'location': 'goa'
-};
+class AddOption extends React.Component {
+    render(){
+        return(
+            <div>
+                <form>
+                    <input type="text" name="option"/>
+                    <input type="submit" value="submit"/>
+                </form>
+            </div>
+        )
+    }
+}
 
-const templateTwo = (
-    <div>
-        <h1>{user.name ? user.name : 'Aanonymous'}</h1>
-        {user.age <= 18 && <p>Age:{user.age}</p>}
-        {getLocation(user.location)}
-    </div>
-);
+ReactDOM.render(<Indecesion />, document.getElementById('app'));
