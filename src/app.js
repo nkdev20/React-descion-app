@@ -1,23 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import Indecesion from './components/Indecesion';
+import 'normalize.css/normalize.css';
+import './styles/styles.scss';
+
 
 ReactDOM.render(<Indecesion options={['pn','fse']}/>, document.getElementById('app'));
 
-class OldSyntax {
-    constructor(){
-        this.name = 'Mike';
-    }
-}
+// class OldSyntax {
+//     constructor(){
+//         this.name = 'Mike';
+//     }
 
-const old  = new OldSyntax();
-console.log(old);
+//     getGreeting(){
+//         return `Hi ${this.name}`;
+//     }
+// }
+
+// const old  = new OldSyntax();
+// const getGreeting = old.getGreeting;
+// console.log(getGreeting());
 
 //-----
 
-class NewSyntax {
-    name='ada';
-}
+// class NewSyntax {
+//     name='ada';
 
-const nset = new NewSyntax();
-console.log(nset);
+//     getGreeting = () => {
+//         return `Hi ${this.name}`;
+//     }
+// }
+
+// const nset = new NewSyntax();
+// const test = nset.getGreeting;
+// console.log(test());
