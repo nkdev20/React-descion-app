@@ -3,5 +3,6 @@
 Run npm-install to install packages
 
 To run the app
-*Install yarn
-*Run command yarn dev-server
+
+1. Install yarn
+2. Run command yarn dev-server
